@@ -1,0 +1,24 @@
+# Default values for busybox.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+metadata:
+  name: busybox-iac-sample
+  namespace: infra  
+  labels:
+    app: busybox-iac-sample
+replicaCount: 1
+image:
+  repository: busybox
+  tag: latest
+  pullPolicy: Always
+service:
+  name: svc-busybox
+  type: NodePort
+  externalPort: 80
+  internalPort: 80
+persistent:
+  storageClass: efs-sc
+  capacity: 1Gi
+  pvc:
+    name: pvc-busybox
+    dirpath: /pvc-data
